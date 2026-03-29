@@ -3,6 +3,12 @@
 
 ---
 
+## Dashboard Preview
+
+![Dashboard](screenshots/dashboard.jpg)
+
+---
+
 ## Overview
 
 This project analyzes the sales and profit performance of a global retail business operating across five countries — USA, UK, France, Australia, and UAE. The goal was to build a complete BI solution that gives a clear picture of where revenue is coming from, which products are performing well, and how profit margins are holding up over time.
