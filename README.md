@@ -1,5 +1,5 @@
 # Global Retail Sales & Profit Analysis
-**Power BI Dashboard Project | Microsoft Power BI Professional Certificate (Coursera)**
+**Power BI Dashboard Project**
 
 ---
 
