@@ -259,6 +259,11 @@ global-retail-sales-analysis/
 
 ---
 
+
+*This project was completed independently as part of my data analytics portfolio. AI assistants (Claude, ChatGPT) were used for debugging support and concept clarification during development; all data modeling decisions, DAX measures, and report design were independently developed and validated.*
+
+---
+
 ## Connect
 
 - [LinkedIn](https://www.linkedin.com/in/your-profile)
