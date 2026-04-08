@@ -2,6 +2,16 @@
 **An end-to-end business intelligence project built with Microsoft Power BI**
 
 ---
+## Skills Demonstrated
+
+- **Data Modeling** — Designed a snowflake schema with 6 tables and 5 active relationships, including a DAX-generated calendar table for time intelligence.
+- **DAX & Time Intelligence** — Wrote calculated tables and measures using `CALCULATE`, `TOTALYTD`, `DATESQTD`, `LOOKUPVALUE`, and `DIVIDE` to compute YTD profit, quarterly profit, and yearly profit margin.
+- **Data Transformation** — Cleaned and prepared multi-source data (Excel, Python script) using Power Query and calculated columns, including multi-currency conversion across 5 exchange rates.
+- **Dashboard Design** — Built a 2-page interactive Power BI report (Sales Overview, Profit Overview) with KPI cards, slicers, trend lines, and drill-downs for executive consumption.
+- **Debugging & Problem Solving** — Diagnosed and resolved real-world issues including Python path mismatches, decimal-separator bugs inflating values 100x, multi-hop relationship failures, and inactive calendar relationships.
+- **Business Intelligence Workflow** — Delivered an end-to-end BI solution from raw data to published report via Power BI Service, including alerts and subscriptions for stakeholder distribution.
+
+---
 
 ## Dashboard Preview
 
